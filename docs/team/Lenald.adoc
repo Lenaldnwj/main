@@ -30,6 +30,8 @@ include::../UserGuide.adoc[tag=optionalinputtagstwo]
 
 As we increased the number of attributes for the person who is being added into the address book, we realised that it is getting very cumbersome for the user to
 input all the compulsory attributes into cherBook. Furthermore, the person to be added might not have all the attributes deemed compulsory.
+
+
 Thus, we decided that several non essential attributes can
 be optional inputs for the user.
 
@@ -94,7 +96,7 @@ include::../DeveloperGuide.adoc[tag=studentparentcontact]
 
 ==== Justification
 
-Educators have many students, and would have difficulty differentiating the tags if they were to tag many of their students
+Educators have many students, and would have difficulty differentiating the tags if they were to tag many of their students.
 
 
 By assigning tags with colors such that tags with the same descriptions
