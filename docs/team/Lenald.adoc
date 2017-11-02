@@ -61,12 +61,44 @@ include::../UserGuide.adoc[tag=optionalinputtagstwo]
 
 Initially, cherBook had the option of only being able to record the student's number.
 We decided to come out with multiple numbers (Parent and Student number)
-as many educators believe that there needs to be good communication between both the students and their parents.
+as many educators believe that there needs to be good communication between not only the students, but their parents too.
 
 This enhancement is especially useful for those who are in charge of younger students
 in primary school. Educators in institution with younger students
 will find having parents numbers more important than the student's number as there tends to be more communication
 between the teachers and the parent of the students.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=studentparentcontact]
+
+#End of Extract#
+
+---
+
+=== Enhancement Added: Randomised Unique Tag Colors
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+//include::../UserGuide.adoc[tag=optionalinputtagstwo]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+Educators have many students, and would have difficulty differentiating the tags if they were to tag many of their students
+
+
+By assigning tags with colors such that tags with the same descriptions
+will have the same unique color, educators will be able to distinguish between the different tags easily.
 
 ==== Implementation
 
@@ -79,15 +111,15 @@ between the teachers and the parent of the students.
 
 ---
 
-=== Enhancement Proposed: Add command `remark`
+=== Enhancement Proposed: Add command `Study Buddy`
 
-{Explain similar to the Undo/Redo feature above.}
+{Explain similar to the feature above.}
 
 === Other contributions
 
 * Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
 * Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
 
-== Project: PowerPointLabs
+== Project: NUS Interactive Food Map
 
-{Optionally (not graded), you may include other projects in your portfolio.}
+It is an interactive food map of the NUS campus that shows information of major food places in the nus map.
