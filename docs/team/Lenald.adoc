@@ -10,6 +10,45 @@ It is written in Java, and has about 8 kLoC.
 
 *Code contributed*: [https://github.com/Lenaldnwj/main/blob/master/collated/main/Lenaldnwj.md[Functional code]] [https://github.com/Lenaldnwj/main/blob/master/collated/test/Lenaldnwj.md[Test code]]
 
+=== Enhancement Added: Randomised Unique Tag Colors
+
+==== External behavior
+
+---
+
+#Start of Extract [from: Developer Guide]#
+
+For the convenience of the user, the assignment of colors will be automated by cherBook.
+
+Whenever the user access the cherBook, a new range of random colors will be assigned to the background of the tags.
+
+Modifications were made to the range of possible colors. It is to ensure that the background color's saturation and brightness is at an optimal level
+to match with the white font of the tag description.
+
+#End of Extract#
+
+---
+
+==== Justification
+
+In this day and age, educators have many classes of students to teach. They will have difficulty differentiating between
+tags of different descriptions if they are to tag many of their students.
+
+This feature will assign tags of the same descriptions with a unique color. With the implementation of this feature,
+ educators will be able to distinguish between the different tags easily.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=uniquetagcolor]
+
+#End of Extract#
+
+---
+
+
 === Enhancement Added: Optional Inputs
 
 ==== External behavior
@@ -76,38 +115,6 @@ between the teachers and the parent of the students.
 #Start of Extract [from: Developer Guide]#
 
 include::../DeveloperGuide.adoc[tag=studentparentcontact]
-
-#End of Extract#
-
----
-
-=== Enhancement Added: Randomised Unique Tag Colors
-
-==== External behavior
-
----
-#Start of Extract [from: User Guide]#
-
-//include::../UserGuide.adoc[tag=optionalinputtagstwo]
-
-#End of Extract#
-
----
-
-==== Justification
-
-Educators have many students, and would have difficulty differentiating the tags if they were to tag many of their students.
-
-
-By assigning tags with colors such that tags with the same descriptions
-will have the same unique color, educators will be able to distinguish between the different tags easily.
-
-==== Implementation
-
----
-#Start of Extract [from: Developer Guide]#
-
-//include::../DeveloperGuide.adoc[tag=undoredo]
 
 #End of Extract#
 
