@@ -7,8 +7,8 @@ import com.google.common.eventbus.Subscribe;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -25,11 +25,13 @@ public class ExtendedPersonCard extends UiPart<Region> {
     private ObservableList<ReadOnlyPerson> people;
 
     @FXML
-    private HBox cardpane;
+    private VBox cardpane;
     @FXML
     private Label name;
     @FXML
     private Label phone;
+    @FXML
+    private Label parentPhone;
     @FXML
     private Label address;
     @FXML
@@ -54,6 +56,7 @@ public class ExtendedPersonCard extends UiPart<Region> {
     protected void loadPersonDetails(ReadOnlyPerson person) {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().toString());
+        parentPhone.setText(person.getParentPhone().toString());
         address.setText(person.getAddress().toString());
         formClass.setText(person.getFormClass().toString());
         grades.setText(person.getGrades().toString());

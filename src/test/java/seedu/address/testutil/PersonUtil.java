@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FORMCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTALCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,12 +25,14 @@ public class PersonUtil {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
+    //@@author lincredibleJC
     /**
      * Returns an add command alias string for adding the {@code person}.
      */
     public static String getAddAlias(ReadOnlyPerson person) {
         return AddCommand.COMMAND_ALIAS + " " + getPersonDetails(person);
     }
+    //@@author
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
@@ -38,6 +41,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        sb.append(PREFIX_PARENTPHONE + person.getParentPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_FORMCLASS + person.getFormClass().value + " ");

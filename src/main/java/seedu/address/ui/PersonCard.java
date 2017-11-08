@@ -19,6 +19,7 @@ import seedu.address.model.person.ReadOnlyPerson;
  */
 public class PersonCard extends UiPart<Region> {
 
+    //@@author Lenaldnwj
     private static final String FXML = "PersonListCard.fxml";
 
     private static HashMap<String, String> currentTagColors = new HashMap<String, String>();
@@ -46,10 +47,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label parentPhone;
+    @FXML
     private Label formClass;
     @FXML
     private FlowPane tags;
-
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
@@ -112,11 +114,11 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
+        parentPhone.textProperty().bind(Bindings.convert(person.parentPhoneProperty()));
         formClass.textProperty().bind(Bindings.convert(person.formClassProperty()));
         tags.getChildren().clear();
         initialiseTags(person);
     }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -134,7 +136,6 @@ public class PersonCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
     }
-
     /**
      * Initialise the {@code person} tags
      *
@@ -148,4 +149,5 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
+
 }

@@ -1,4 +1,79 @@
 # limcel
+###### /java/seedu/address/logic/commands/ScheduleCommand.java
+``` java
+/**
+ * Schedules a consultation timeslot with the person identified using it's last displayed index from the address book.
+ */
+public class ScheduleCommand extends Command {
+
+    public static final String COMMAND_WORD = "schedule";
+    public static final String COMMAND_ALIAS = "sch";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Schedules the selected indexed person to a consultation timeslot.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_SCHEDULE + "tomorrow 6.30pm";
+
+    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled Person: %1$s";
+    public static final String PERSON_NOT_FOUND = "This person cannot be found";
+
+    private final Index targetIndex;
+    private final Calendar date;
+
+    public ScheduleCommand(Index targetIndex, Calendar date) {
+        this.targetIndex = targetIndex;
+        this.date = date;
+    }
+
+    @Override
+    public CommandResult execute() throws CommandException {
+        requireNonNull(targetIndex);
+        requireNonNull(date);
+
+        List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        if (date != null && !isDateValid()) {
+            return new CommandResult("You have entered an invalid date.");
+        }
+
+        ReadOnlyPerson personAddedToSchedule = lastShownList.get(targetIndex.getZeroBased());
+        Schedule schedule = new Schedule(personAddedToSchedule.getName().toString(), date);
+        try {
+            model.addSchedule(schedule);
+        } catch (PersonNotFoundException e) {
+            return new CommandResult(PERSON_NOT_FOUND);
+        }
+
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
+        return new CommandResult("Added " + personAddedToSchedule.getName().toString()
+                + " to consultations schedule " + "on " + schedule.getDate().toString() + ".\n"
+                + "Use 'viewsch' or 'viewschedule' command to view all your schedules.");
+
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ScheduleCommand // instanceof handles nulls
+                && this.date.getTimeInMillis() == ((ScheduleCommand) other).date.getTimeInMillis())
+                && this.targetIndex.getZeroBased() == ((ScheduleCommand) other).targetIndex.getZeroBased();
+    }
+
+    /**
+     * Returns true if appointment date set to after current time
+     */
+    private boolean isDateValid() {
+        requireNonNull(date);
+        Calendar calendar = Calendar.getInstance();
+        return !date.getTime().before(calendar.getTime());
+    }
+}
+```
 ###### /java/seedu/address/logic/commands/SortCommand.java
 ``` java
 /**
@@ -27,6 +102,37 @@ public class SortCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.sortByPersonName();
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+}
+```
+###### /java/seedu/address/logic/commands/ViewScheduleCommand.java
+``` java
+/**
+ * Lists all persons in the address book to the user.
+ */
+public class ViewScheduleCommand extends Command {
+
+    public static final String COMMAND_WORD = "viewschedules";
+    public static final String COMMAND_ALIAS = "viewsch";
+
+    public static final String MESSAGE_SUCCESS = "Listed your schedule. \n";
+
+
+    @Override
+    public CommandResult execute() {
+        model.getScheduleList();
+
+        return new CommandResult(MESSAGE_SUCCESS
+                + changeToAppropriateUiFormat((model.getAddressBook().getScheduleList()).toString()));
+    }
+
+    //====================================== HELPER METHODS =====================================
+    /**
+     * Converts the schedule list output by replacing all occurrence of "," with ": " for better UI visualisation.
+     */
+    public static String changeToAppropriateUiFormat(String value) {
+        value = value.replace(",", "\n");
+        return value;
     }
 }
 ```
@@ -86,7 +192,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
         }
-        throw new ParseException("Please enter the correct prefix");
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -117,7 +223,6 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
 ###### /java/seedu/address/model/AddressBook.java
 ``` java
     public ObservableList<Schedule> getScheduleList() {
-        System.out.println(schedules.asObservableList());
         return schedules.asObservableList();
     }
 ```
@@ -512,7 +617,7 @@ public class ExtendedPersonCard extends UiPart<Region> {
     private ObservableList<ReadOnlyPerson> people;
 
     @FXML
-    private HBox cardpane;
+    private VBox cardpane;
     @FXML
     private Label name;
     @FXML
@@ -564,106 +669,128 @@ public class ExtendedPersonCard extends UiPart<Region> {
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="stackPane" fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="TOP_LEFT" minHeight="105" spacing="15.0" GridPane.columnIndex="0">
-            <padding>
-                <Insets bottom="5" left="5" right="15" top="5" />
-            </padding>
-            <HBox alignment="TOP_LEFT" spacing="10">
-            <ImageView>
-               <image>
-                  <Image url="@../../../../docs/images/icons/student(32px).png" />
-               </image>
-            </ImageView>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Label>
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-            </HBox>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
+<VBox fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="name" lineSpacing="10.0" styleClass="cell_big_label" text="\$name">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
             <graphic>
-               <ImageView>
-                  <image>
-                     <Image url="@../../../../docs/images/icons/phone.png" />
-                  </image>
-               </ImageView>
+                <ImageView>
+                    <image>
+                        <Image url="@../images/student.png" />
+                    </image>
+                </ImageView>
             </graphic>
-            <VBox.margin>
-               <Insets />
-            </VBox.margin></Label>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+         <padding>
+            <Insets bottom="7.0" />
+         </padding>
+        </Label>
+        <Label fx:id="phone" lineSpacing="10.0" styleClass="cell_small_label" text="\$phone">
             <graphic>
-               <ImageView>
-                  <image>
-                     <Image url="@../../../../docs/images/icons/address.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-            <Label fx:id="formClass" styleClass="cell_small_label" text="\$formClass">
+                <ImageView>
+                    <image>
+                        <Image url="@../images/phone.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+         <font>
+            <Font size="14.0" />
+         </font>
+        </Label>
+        <Label fx:id="address" lineSpacing="10.0" styleClass="cell_small_label" text="\$address">
             <graphic>
-               <ImageView>
-                  <image>
-                     <Image url="@../../../../docs/images/icons/class.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-            <Label fx:id="grades" styleClass="cell_small_label" text="\$grades">
+                <ImageView>
+                    <image>
+                        <Image url="@../images/address.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+         <font>
+            <Font size="14.0" />
+         </font>
+        </Label>
+        <Label fx:id="formClass" lineSpacing="10.0" styleClass="cell_small_label" text="\$formClass">
             <graphic>
-               <ImageView>
-                  <image>
-                     <Image url="@../../../../docs/images/icons/grades.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-            <Label fx:id="postalCode" styleClass="cell_small_label" text="\$postalCode">
-                <graphic>
-                    <ImageView>
-                        <image>
-                            <Image url="@../../../../docs/images/icons/postalCode.png" />
-                        </image>
-                    </ImageView>
-                </graphic></Label>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+                <ImageView>
+                    <image>
+                        <Image url="@../images/formClass.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+         <font>
+            <Font size="14.0" />
+         </font>
+        </Label>
+        <Label fx:id="grades" lineSpacing="10.0" styleClass="cell_small_label" text="\$grades">
             <graphic>
-               <ImageView>
-                  <image>
-                     <Image url="@../../../../docs/images/icons/email.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark">
+                <ImageView>
+                    <image>
+                        <Image url="@../images/grades.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+         <font>
+            <Font size="14.0" />
+         </font>
+        </Label>
+        <Label fx:id="postalCode" lineSpacing="10.0" styleClass="cell_small_label" text="\$postalCode">
             <graphic>
-               <ImageView>
-                  <image>
-                     <Image url="@../../../../docs/images/icons/remark.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-        </VBox>
-        <rowConstraints>
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
-</HBox>
+                <ImageView>
+                    <image>
+                        <Image url="@../images/postalCode.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+         <font>
+            <Font size="14.0" />
+         </font>
+        </Label>
+        <Label fx:id="email" lineSpacing="10.0" styleClass="cell_small_label" text="\$email">
+            <graphic>
+                <ImageView>
+                    <image>
+                        <Image url="@../images/email.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+         <padding>
+            <Insets bottom="5.0" />
+         </padding>
+         <font>
+            <Font size="14.0" />
+         </font>
+        </Label>
+        <Label fx:id="remark" lineSpacing="10.0" styleClass="cell_small_label" text="\$remark">
+            <graphic>
+                <ImageView>
+                    <image>
+                        <Image url="@../images/remark.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
+        </Label>
+    </children>
+</VBox>
 ```

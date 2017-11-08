@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.statistics.Statistics;
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.model.FilteredPersonListChangedEvent;
 import seedu.address.model.person.TagsContainsKeywordsPredicate;
 
+//@@author lincredibleJC
 /**
  * Finds and lists all persons in address book whose tags contains any of the argument keywords.
  * Keyword matching is case sensitive.
@@ -26,9 +28,7 @@ public class FindTagsCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredPersonList(predicate);
-        Statistics stats = new Statistics(model.getFilteredPersonList().filtered(predicate));
-        stats.printAverages();
-        stats.printPercentiles();
+        EventsCenter.getInstance().post(new FilteredPersonListChangedEvent(model.getFilteredPersonList()));
         return new CommandResult(getMessageForPersonListShownSummary(model.getFilteredPersonList().size()));
     }
 

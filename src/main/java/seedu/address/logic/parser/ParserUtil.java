@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Grades;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.ParentPhone;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.PostalCode;
 import seedu.address.model.person.Remark;
@@ -75,6 +76,19 @@ public class ParserUtil {
         return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
     }
 
+    //@@author Lenaldnwj
+    /**
+     * Parses a {@code Optional<String> parentPhone} into an {@code Optional<ParentPhone>} if {@code parentPhone}
+     * is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<ParentPhone> parseParentPhone(Optional<String> parentPhone) throws IllegalValueException {
+        requireNonNull(parentPhone);
+        return parentPhone.isPresent() ? Optional.of(new ParentPhone(parentPhone.get())) : Optional.empty();
+    }
+    //@@author
+
+    //@@author lincredibleJC
     /**
      * Parses a {@code Optional<String> formClass} into an {@code Optional<FormClass>} if {@code formClass}
      * is present.
@@ -94,6 +108,7 @@ public class ParserUtil {
         requireNonNull(grades);
         return grades.isPresent() ? Optional.of(new Grades(grades.get())) : Optional.empty();
     }
+    //@@author
 
     /**
      * Parses a {@code Optional<String> postalCode} into an {@code Optional<PostalCode>} if {@code postalCode}
@@ -114,6 +129,7 @@ public class ParserUtil {
         return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
     }
 
+    //@@author nahtanojmil
     /**
      * Parses a {@code Optional<String> remark} into an {@code Optional<Remark>} if {@code remark}
      * is present.

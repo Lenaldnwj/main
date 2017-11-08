@@ -13,22 +13,43 @@ import seedu.address.model.tag.UniqueTagList;
 public interface ReadOnlyPerson {
 
     ObjectProperty<Name> nameProperty();
+
     Name getName();
+
     ObjectProperty<Phone> phoneProperty();
+
     Phone getPhone();
+
+    ObjectProperty<ParentPhone> parentPhoneProperty();
+
+    ParentPhone getParentPhone();
+
     ObjectProperty<Email> emailProperty();
+
     Email getEmail();
+
     ObjectProperty<Address> addressProperty();
+
     Address getAddress();
+
     ObjectProperty<FormClass> formClassProperty();
+
     FormClass getFormClass();
+
     ObjectProperty<Grades> gradesProperty();
+
     Grades getGrades();
+
     ObjectProperty<PostalCode> postalCodeProperty();
+
     PostalCode getPostalCode();
+
     ObjectProperty<Remark> remarkProperty();
+
     Remark getRemark();
+
     ObjectProperty<UniqueTagList> tagProperty();
+
     Set<Tag> getTags();
 
     /**
@@ -39,6 +60,7 @@ public interface ReadOnlyPerson {
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getPhone().equals(this.getPhone())
+                && other.getParentPhone().equals(this.getParentPhone())
                 && other.getEmail().equals(this.getEmail())
                 && other.getAddress().equals(this.getAddress())
                 && other.getFormClass().equals(this.getFormClass())
@@ -55,6 +77,8 @@ public interface ReadOnlyPerson {
         builder.append(getName())
                .append(" Phone: ")
                .append(getPhone())
+               .append(" ParentPhone: ")
+               .append(getParentPhone())
                .append(" Email: ")
                .append(getEmail())
                .append(" Address: ")
@@ -72,10 +96,13 @@ public interface ReadOnlyPerson {
         return builder.toString();
     }
 
+
+    //@@author lincredibleJC
     default String getTagsAsString() {
         StringBuilder sb = new StringBuilder();
         getTags().forEach(tag -> sb.append(tag.tagName + " "));
         return sb.toString();
     }
+    //@@author
 
 }

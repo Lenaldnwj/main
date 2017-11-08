@@ -15,6 +15,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
+//@@author nahtanojmil
 /**
  * Changes the remark of an existing person in the address book.
  */
@@ -52,7 +53,7 @@ public class RemarkCommand extends UndoableCommand {
         }
 
         ReadOnlyPerson toBeEdited = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(toBeEdited.getName(), toBeEdited.getPhone(),
+        Person editedPerson = new Person(toBeEdited.getName(), toBeEdited.getPhone(), toBeEdited.getParentPhone(),
                 toBeEdited.getEmail(), toBeEdited.getAddress(), toBeEdited.getFormClass(),
                 toBeEdited.getGrades(), toBeEdited.getPostalCode(), stringRemark, toBeEdited.getTags());
 
