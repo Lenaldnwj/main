@@ -182,7 +182,7 @@ public class MainWindow extends UiPart<Region> {
         prefs.setAddressBookTheme(themeArr[index.getZeroBased()] + ".css");
 
         if (MainApp.class.getResource(path) == null) {
-            throw new CommandException(Messages.MESSAGE_UNKNOWN_THEME);
+            throw new CommandException("Unknown theme");
         }
 
         mainWindow.getStylesheets().clear();

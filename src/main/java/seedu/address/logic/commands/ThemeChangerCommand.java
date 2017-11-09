@@ -7,7 +7,7 @@ import seedu.address.commons.events.ui.ThemeChangerRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
- * Switch the theme of the address book
+ * Changes the UI theme of cherBook.
  */
 public class ThemeChangerCommand extends Command {
 
@@ -18,8 +18,6 @@ public class ThemeChangerCommand extends Command {
             + "1. Dark;   2. Luminous\n"
             + "Parameters: INDEX (must be 1 or 2)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_THEME_SUCCESS = "Theme updated: %1$s";
 
     private final Index index;
 
@@ -35,7 +33,7 @@ public class ThemeChangerCommand extends Command {
         }
 
         EventsCenter.getInstance().post(new ThemeChangerRequestEvent(index));
-        return new CommandResult(String.format(MESSAGE_THEME_SUCCESS, themeArr[index.getZeroBased()]));
+        return new CommandResult(String.format("Theme updated successfully"));
     }
 
 
