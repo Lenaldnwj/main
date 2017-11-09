@@ -36,7 +36,6 @@ public class UserPrefs {
     }
 
     public void setAddressBookTheme(String addressBookTheme) {
-        System.out.println(addressBookTheme + "--------------");
         this.addressBookTheme = addressBookTheme;
     }
 

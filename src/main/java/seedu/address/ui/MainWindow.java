@@ -175,7 +175,7 @@ public class MainWindow extends UiPart<Region> {
      * Set theme based on user's input index
      */
     private void handleTheme(Index index) throws CommandException {
-        String[] themeArr = {"DarkTheme", "Light", "Ugly"};
+        String[] themeArr = {"DarkTheme", "luminate"};
         String selectedTheme = themeArr[index.getZeroBased()];
 
         String path = new String("/view/" + selectedTheme + ".css");
@@ -186,7 +186,6 @@ public class MainWindow extends UiPart<Region> {
             throw new CommandException(Messages.MESSAGE_UNKNOWN_THEME);
         }
 
-        System.out.println(mainWindow.getStylesheets().toString() + "Have funnnnnnnnnnnnnn");
         mainWindow.getStylesheets().clear();
         mainWindow.getStylesheets().add(path);
 

@@ -15,8 +15,8 @@ public class SwitchThemeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Switch to selected theme\n"
-            + "1. Dark;   2. Light;   3. Ugly\n"
-            + "Parameters: INDEX (must be 1, 2 or 3)\n"
+            + "1. Dark;   2. Luminous\n"
+            + "Parameters: INDEX (must be 1 or 2)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_THEME_SUCCESS = "Theme updated: %1$s";
