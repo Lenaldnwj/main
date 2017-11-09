@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.events.ui.SwitchThemeRequestEvent;
+import seedu.address.commons.events.ui.ThemeChangerRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
@@ -11,7 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class ThemeChangerCommand extends Command {
 
-    public static final String COMMAND_WORD = "switch";
+    public static final String COMMAND_WORD = "/theme";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Switch to selected theme\n"
@@ -34,7 +34,7 @@ public class ThemeChangerCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_THEME_NUMBER);
         }
 
-        EventsCenter.getInstance().post(new SwitchThemeRequestEvent(index));
+        EventsCenter.getInstance().post(new ThemeChangerRequestEvent(index));
         return new CommandResult(String.format(MESSAGE_THEME_SUCCESS, themeArr[index.getZeroBased()]));
     }
 

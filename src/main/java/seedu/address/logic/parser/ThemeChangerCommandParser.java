@@ -7,10 +7,10 @@ import seedu.address.logic.commands.ThemeChangerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses the given {@code String} of arguments in the context of the ThemeChangerCommand
+ * Parses the given {@code String} of arguments in ThemeChangerCommand
  * and returns an ThemeChangerCommand object for execution.
  */
-public class SwitchThemeCommandParser implements Parser<ThemeChangerCommand> {
+public class ThemeChangerCommandParser implements Parser<ThemeChangerCommand> {
 
     @Override
     public ThemeChangerCommand parse(String userInput) throws ParseException {

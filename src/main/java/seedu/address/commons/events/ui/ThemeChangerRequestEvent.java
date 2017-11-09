@@ -6,11 +6,11 @@ import seedu.address.commons.events.BaseEvent;
 /**
  * Indicate a request to switch theme by the user
  */
-public class SwitchThemeRequestEvent extends BaseEvent {
+public class ThemeChangerRequestEvent extends BaseEvent {
 
     public final Index index;
 
-    public SwitchThemeRequestEvent(Index index) {
+    public ThemeChangerRequestEvent(Index index) {
         this.index = index;
     }
 

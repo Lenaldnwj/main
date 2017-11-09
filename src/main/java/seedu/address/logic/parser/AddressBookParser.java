@@ -127,7 +127,7 @@ public class AddressBookParser {
         case RemarkCommand.COMMAND_ALIAS:
             return new RemarkCommandParser().parse(arguments);
         case ThemeChangerCommand.COMMAND_WORD:
-            return new SwitchThemeCommandParser().parse(arguments);
+            return new ThemeChangerCommandParser().parse(arguments);
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
 
