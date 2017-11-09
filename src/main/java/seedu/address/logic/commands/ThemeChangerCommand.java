@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 /**
  * Switch the theme of the address book
  */
-public class SwitchThemeCommand extends Command {
+public class ThemeChangerCommand extends Command {
 
     public static final String COMMAND_WORD = "switch";
 
@@ -23,7 +23,7 @@ public class SwitchThemeCommand extends Command {
 
     private final Index index;
 
-    public SwitchThemeCommand(Index index) {
+    public ThemeChangerCommand(Index index) {
         this.index = index;
     }
 
@@ -31,7 +31,7 @@ public class SwitchThemeCommand extends Command {
     public CommandResult execute() throws CommandException {
         String[] themeArr = {"Dark", "Light", "Ugly"};
         if (index.getZeroBased() >= themeArr.length || index.getZeroBased() < 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_THEME_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_THEME_NUMBER);
         }
 
         EventsCenter.getInstance().post(new SwitchThemeRequestEvent(index));
@@ -42,7 +42,7 @@ public class SwitchThemeCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this //shortcut if same object
-                || (other instanceof SwitchThemeCommand
-                && this.index.equals(((SwitchThemeCommand) other).index));
+                || (other instanceof ThemeChangerCommand
+                && this.index.equals(((ThemeChangerCommand) other).index));
     }
 }

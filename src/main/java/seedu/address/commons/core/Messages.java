@@ -12,6 +12,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_ADDEDITCOMMANDREMARK_INVALID = "Add or edit command do not "
             + "accept/change remarks.";
-    public static final String MESSAGE_INVALID_THEME_INDEX = "The theme index provided is invalid";
+    public static final String MESSAGE_INVALID_THEME_NUMBER = "Invalid theme number provided";
     public static final String MESSAGE_UNKNOWN_THEME = "Unknown theme";
 }

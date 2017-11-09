@@ -13,21 +13,22 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.ExitAppRequestEvent;
-import seedu.address.commons.events.ui.ShowHelpRequestEvent;
-import seedu.address.commons.util.FxViewUtil;
-import seedu.address.logic.Logic;
-import seedu.address.model.UserPrefs;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.commons.events.ui.SwitchThemeRequestEvent;
+import seedu.address.commons.util.FxViewUtil;
+import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.CommandException;
-import javafx.scene.layout.VBox;
-import seedu.address.MainApp;
+import seedu.address.model.UserPrefs;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,15 +40,13 @@ public class MainWindow extends UiPart<Region> {
     private static final String FXML = "MainWindow.fxml";
     private static final int MIN_HEIGHT = 600;
     private static final int MIN_WIDTH = 450;
+    private static String currentTheme;
 
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
+
     private Stage primaryStage;
     private Logic logic;
-
-    private static String currentTheme;
-
-    // Independent Ui parts residing in this Ui container
     private ExtendedPersonCard extendedPersonCard;
     private StatisticsPanel statisticsPanel;
     private GraphPanel graphPanel;
@@ -249,9 +248,9 @@ public class MainWindow extends UiPart<Region> {
 
     @Subscribe
      private void handleSwitchThemeRequestEvent(SwitchThemeRequestEvent event) throws CommandException {
-            logger.info(LogsCenter.getEventHandlingLogMessage(event));
-            handleTheme(event.index);
-        }
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleTheme(event.index);
+    }
 
     /**
      * Closes the application.
