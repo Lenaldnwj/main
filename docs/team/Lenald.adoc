@@ -49,7 +49,7 @@ include::../DeveloperGuide.adoc[tag=uniquetagcolor]
 ---
 
 
-=== Enhancement Added: Optional Inputs
+=== Enhancement Added: Optional Inputs/Fields
 
 ==== External behavior
 
@@ -79,7 +79,7 @@ be optional inputs for the user.
 ---
 #Start of Extract [from: Developer Guide]#
 
-//include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=optionalInput]
 
 #End of Extract#
 
