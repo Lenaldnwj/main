@@ -13,15 +13,21 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
+import seedu.address.commons.events.ui.ThemeChangerRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.UserPrefs;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,13 +39,13 @@ public class MainWindow extends UiPart<Region> {
     private static final String FXML = "MainWindow.fxml";
     private static final int MIN_HEIGHT = 600;
     private static final int MIN_WIDTH = 450;
+    private static String currentTheme;
 
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
+
     private Stage primaryStage;
     private Logic logic;
-
-    // Independent Ui parts residing in this Ui container
     private ExtendedPersonCard extendedPersonCard;
     private StatisticsPanel statisticsPanel;
     private GraphPanel graphPanel;
@@ -52,6 +58,9 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private StackPane statisticsPanelPlaceholder;
+
+    @FXML
+    private VBox mainWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -155,7 +164,31 @@ public class MainWindow extends UiPart<Region> {
 
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        currentTheme = "/view/" + prefs.getAddressBookTheme();
+        mainWindow.getStylesheets().add(currentTheme);
     }
+
+    /**
+     * Set theme based on user's input index
+     */
+    private void handleTheme(Index index) throws CommandException {
+        String[] themeArr = {"DarkTheme", "luminate"};
+        String selectedTheme = themeArr[index.getZeroBased()];
+
+        String path = new String("/view/" + selectedTheme + ".css");
+        String extensionPath = new String("/view/Extensions" + selectedTheme + ".css");
+        prefs.setAddressBookTheme(themeArr[index.getZeroBased()] + ".css");
+
+        if (MainApp.class.getResource(path) == null) {
+            throw new CommandException("Unknown theme");
+        }
+
+        mainWindow.getStylesheets().clear();
+        mainWindow.getStylesheets().add(path);
+
+    }
+
 
     void hide() {
         primaryStage.hide();
@@ -210,6 +243,12 @@ public class MainWindow extends UiPart<Region> {
 
     void show() {
         primaryStage.show();
+    }
+
+    @Subscribe
+     private void handleSwitchThemeRequestEvent(ThemeChangerRequestEvent event) throws CommandException {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleTheme(event.index);
     }
 
     /**
