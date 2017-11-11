@@ -130,12 +130,13 @@ include::../DeveloperGuide.adoc[tag=studentparentcontact]
 === Other contributions
 
 
-* Included ParentPhone attribute (Pull requests https://github.com/CS2103AUG2017-T16-B2/main/pull/116[#116])
-* Icon text descriptors on startup of cherBook (Pull requests https://github.com/CS2103AUG2017-T16-B2/main/pull/121[#121])
+* Included ParentPhone attribute (Pull request https://github.com/CS2103AUG2017-T16-B2/main/pull/116[#116])
+* Included icons in PersonListCard (Pull request https://github.com/CS2103AUG2017-T16-B2/main/pull/116[#116])
+* Icon text descriptors in ExtendedPersonCard on startup of cherBook (Pull request https://github.com/CS2103AUG2017-T16-B2/main/pull/121[#121])
 * Improve sample data (Pull requests https://github.com/CS2103AUG2017-T16-B2/main/pull/79[#79], https://github.com/CS2103AUG2017-T16-B2/main/pull/120[#120])
 * Improve test quality of several features (Pull requests https://github.com/CS2103AUG2017-T16-B2/main/pull/88[#88]
 , https://github.com/CS2103AUG2017-T16-B2/main/pull/113[#113], https://github.com/CS2103AUG2017-T16-B2/main/pull/121[#121])
-* Remove unused codes to improve coveralls (https://github.com/CS2103AUG2017-T16-B2/main/pull/129[#129])
+* Remove unused codes to improve coveralls (Pull request https://github.com/CS2103AUG2017-T16-B2/main/pull/129[#129])
 
 == Project: NUS Interactive Food Map
 
