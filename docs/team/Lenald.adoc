@@ -1,11 +1,13 @@
-= Lenald Ng Wai Jun - Project Portfolio
+= Lenald Ng Wai Jun - cherBook Project Portfolio
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== Project: cherBook
-cherBook is an address book application used by teachers to monitor students' academic progress.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+== Introduction to cherBook
+cherBook is an address book application that combines statistical analysis with the ease of communication.
+CherBook is targetted at teachers as it offers various functionalities that a teacher needs.
+
+The user can interact with it using a command line interface, and it has a graphical user interface created with JavaFX.
 It is written in Java, and has about 8 kLoC.
 
 *Code contributed*: [https://github.com/Lenaldnwj/main/blob/master/collated/main/Lenaldnwj.md[Functional code]] [https://github.com/Lenaldnwj/main/blob/master/collated/test/Lenaldnwj.md[Test code]]
@@ -32,7 +34,7 @@ to match with the white font of the tag description.
 ==== Justification
 
 In this day and age, educators have many classes of students to teach. They will have difficulty differentiating between
-tags of different descriptions if they are to tag many of their students.
+tags of different descriptions, if they are to tag many of their students.
 
 This feature will assign tags of the same descriptions with a unique color. With the implementation of this feature,
  educators will be able to distinguish between the different tags easily.
