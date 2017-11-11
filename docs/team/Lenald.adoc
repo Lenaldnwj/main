@@ -5,10 +5,10 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 
 == Introduction to cherBook
 cherBook is an address book application that combines statistical analysis with the ease of communication.
-CherBook is targetted at teachers as it offers various functionalities that a teacher needs.
+CherBook is targetted at teachers as it offers various functionalities that can improve improve the lives of teachers.
 
 The user can interact with it using a command line interface, and it has a graphical user interface created with JavaFX.
-It is written in Java, and has about 8 kLoC.
+The application is written in Java, and has about 8 thousand lines of code (kLoC).
 
 *Code contributed*: [https://github.com/Lenaldnwj/main/blob/master/collated/main/Lenaldnwj.md[Functional code]] [https://github.com/Lenaldnwj/main/blob/master/collated/test/Lenaldnwj.md[Test code]]
 
@@ -20,12 +20,7 @@ It is written in Java, and has about 8 kLoC.
 
 #Start of Extract [from: Developer Guide]#
 
-For the convenience of the user, the assignment of colors will be automated by cherBook.
-
-Whenever the user access the cherBook, a new range of random colors will be assigned to the background of the tags.
-
-Modifications were made to the range of possible colors. It is to ensure that the background color's saturation and brightness is at an optimal level
-to match with the white font of the tag description.
+include::../UserGuide.adoc[tag=randomisedUniqueTagColors]
 
 #End of Extract#
 
