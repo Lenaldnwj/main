@@ -3,9 +3,9 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== Introduction to cherBook
+== Introduction
 cherBook is an address book application that combines statistical analysis with the ease of communication.
-CherBook is targetted at teachers as it offers various functionalities that can improve improve the lives of teachers.
+cherBook is targetted at teachers as it offers various functionalities that can improve the lives of teachers.
 
 The user can interact with it using a command line interface, and it has a graphical user interface created with JavaFX.
 The application is written in Java, and has about 8 thousand lines of code (kLoC).
