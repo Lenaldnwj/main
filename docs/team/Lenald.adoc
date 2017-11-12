@@ -8,7 +8,7 @@ In this project portfolio, the `external` and `internal` behavior of the various
 behind implementing them, will be explained in detail.
 
 `cherBook` is an address book application that combines `statistical analysis` with the ease of `communication`.
-cherBook is targeted at `teachers` as it offers various features that can improve the lives of teachers.
+It is targeted at `teachers` as it offers various features that can improve the lives of teachers.
 
 image::LenPortfolioIntroduction.png[width="800"]
 _Figure 1.1 : Illustration of cherBook_
