@@ -38,15 +38,15 @@ public class AddCommand extends UndoableCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + "[" + PREFIX_PHONE + "97979797] "
+            + PREFIX_PHONE + "97979797 "
             + PREFIX_PARENTPHONE + "97303132 "
-            + "[" + PREFIX_EMAIL + "johnd@example.com] "
-            + "[" + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25] "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_FORMCLASS + "12S23 "
             + PREFIX_GRADES + "123.0 "
-            + "[" + PREFIX_POSTALCODE + "673349] "
-            + "[" + PREFIX_TAG + "friends] "
-            + "[" + PREFIX_TAG + "owesMoney]";
+            + PREFIX_POSTALCODE + "673349 "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
