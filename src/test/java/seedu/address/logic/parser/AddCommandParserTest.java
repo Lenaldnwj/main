@@ -216,39 +216,32 @@ public class AddCommandParserTest {
                         + PARENTPHONE_DESC_AMY + FORMCLASS_DESC_AMY + GRADES_DESC_AMY,
                 new AddCommand(expectedPersonWithNoOptionalInputs));
     }
-    //@@author
+
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + VALID_NAME_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + VALID_NAME_BOB + PARENTPHONE_DESC_BOB
+                + FORMCLASS_DESC_BOB + GRADES_DESC_BOB, expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + VALID_PHONE_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
-                + VALID_EMAIL_BOB + ADDRESS_DESC_BOB, expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + VALID_ADDRESS_BOB, expectedMessage);
+        // missing parentPhone prefix
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + VALID_PARENTPHONE_BOB
+                + FORMCLASS_DESC_BOB + GRADES_DESC_BOB, expectedMessage);
 
         // missing formClass prefix
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + VALID_FORMCLASS_BOB, expectedMessage);
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PARENTPHONE_DESC_BOB
+                + VALID_FORMCLASS_BOB + GRADES_DESC_BOB, expectedMessage);
 
         // missing grades prefix
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + VALID_GRADES_BOB, expectedMessage);
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PARENTPHONE_DESC_BOB
+                + FORMCLASS_DESC_BOB + VALID_GRADES_BOB, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + VALID_NAME_BOB + VALID_PHONE_BOB
-                + VALID_EMAIL_BOB + VALID_ADDRESS_BOB, expectedMessage);
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + VALID_NAME_BOB + VALID_PARENTPHONE_BOB
+                + VALID_FORMCLASS_BOB + VALID_GRADES_BOB, expectedMessage);
     }
+    //@@author
 
     @Test
     public void parse_invalidValue_failure() {
