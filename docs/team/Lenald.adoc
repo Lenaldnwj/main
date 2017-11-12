@@ -4,14 +4,17 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :stylesDir: ../stylesheets
 
 == Introduction
-cherBook is an address book application that combines statistical analysis with the ease of communication.
-cherBook is targeted at teachers as it offers various features that can improve the lives of teachers.
-
-The user can interact with it using a command line interface, and it has a graphical user interface created with JavaFX.
-The application is written in Java, and has about 8 thousand lines of code (kLoC).
-
-In this project portfolio, the external and internal behavior of the various features, along with the motivations
+In this project portfolio, the `external` and `internal` behavior of the various features of `cherBook`, along with the `motivations`
 behind implementing them, will be explained in detail.
+
+`cherBook` is an address book application that combines `statistical analysis` with the ease of `communication`.
+cherBook is targeted at `teachers` as it offers various features that can improve the lives of teachers.
+
+image::LenPortfolioIntroduction.png[width="800"]
+_Figure 1.1 : Illustration of cherBook_
+
+The user can interact with it using a `command line interface`, and it has a `graphical user interface` created with `JavaFX`.
+The application is written in `Java`, and has about 8 thousand lines of code (kLoC).
 
 *Code contributed*: [https://github.com/Lenaldnwj/main/blob/master/collated/main/Lenaldnwj.md[Functional code]] [https://github.com/Lenaldnwj/main/blob/master/collated/test/Lenaldnwj.md[Test code]]
 
@@ -89,7 +92,26 @@ include::../DeveloperGuide.adoc[tag=optionalInput]
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=optionalinputtagstwo]
+=== Adding multiple numbers to a person: `add` `Since v1.3`
+
+[NOTE]
+====
+Adding of student or/and parent's number must be preceded by the phone prefix `p/`. +
+Input of `student phone number` is optional. +
+Fields that enclosed in `square brackets` are optional fields.
+====
+
+You can add `multiple numbers` to a person by adhering to the format below. +
+
+Format: add n/NAME `p/student/ STUDENTNUMBER parent/ PARENTNUMBER` [e/EMAIL] [a/ADDRESS] f/FORMCLASS g/GRADES [c/POSTALCODE] [t/TAG]... +
+Shorthand: a n/NAME `p/student/ STUDENTNUMBER parent/ PARENTNUMBER` [e/EMAIL] [a/ADDRESS] f/FORMCLASS g/GRADES [c/POSTALCODE] [t/TAG]...
+
+Example:
+
+* add n/Alex Yeoh `p/student/97272031 parent/97979797` e/alexyeoh@example.com a/Blk 30 Geylang Street 29, #06-40 f/6E1 g/123.0
+
+image::PhoneDisplay.png[width="400"]
+_Figure 4.5.2 : Valid Displayed Person Card Phone Information_
 
 #End of Extract#
 
@@ -117,13 +139,6 @@ include::../DeveloperGuide.adoc[tag=studentparentcontact]
 
 ---
 
-=== Enhancement Proposed: Add command `Study Buddy`
-
-==== External behavior
-
-==== Justification
-==== Implementation
-
 
 === Other contributions
 
@@ -136,6 +151,6 @@ include::../DeveloperGuide.adoc[tag=studentparentcontact]
 , https://github.com/CS2103AUG2017-T16-B2/main/pull/113[#113], https://github.com/CS2103AUG2017-T16-B2/main/pull/121[#121])
 * Remove unused codes to improve coveralls (Pull request https://github.com/CS2103AUG2017-T16-B2/main/pull/129[#129])
 
-== Project: NUS Interactive Food Map
+== Other Projects: NUS Interactive Food Map
 
 It is an interactive food map of the NUS campus that shows information of major food places in the nus map.
