@@ -64,15 +64,12 @@ public class ModelManager extends ComponentManager implements Model {
         return addressBook;
     }
 
-    //@@author lincredibleJC
     /** Raises events to indicate the model has changed */
     private void indicateAddressBookChanged() {
         raise(new AddressBookChangedEvent(addressBook));
     }
-    //@@author
 
     //@@author lincredibleJC
-
     /** Raises an event to update the StatisticsPanel */
     private void updateStatisticsPanel() {
         raise(new FilteredPersonListChangedEvent(filteredPersons));
@@ -83,7 +80,6 @@ public class ModelManager extends ComponentManager implements Model {
     private void indicateScheduleListChanged() {
         raise(new ScheduleListChangedEvent(getScheduleList()));
     }
-
 
     @Override
     public synchronized void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException {
