@@ -18,6 +18,10 @@ The application is written in `Java`, and has about 8 thousand lines of code (kL
 
 *Code contributed*: [https://github.com/Lenaldnwj/main/blob/master/collated/main/Lenaldnwj.md[Functional code]] [https://github.com/Lenaldnwj/main/blob/master/collated/test/Lenaldnwj.md[Test code]]
 
+[NOTE]
+The diagram label numbers in subsequent sections might be inconsistent as they are extracts from various parts of the user guide and
+developer guide.
+
 === Enhancement Added: Randomised Unique Tag Colors
 
 ==== External behavior
@@ -65,12 +69,12 @@ include::../UserGuide.adoc[tag=optionalinputtagstwo]
 
 ==== Justification
 
-As we increased the number of attributes for the person who is being added into the address book, we realised that it is getting very cumbersome for the user to
+As we increased the number of attributes for the person being added into the address book, we realised that it was getting very cumbersome for the user to
 input all the compulsory attributes into cherBook. Furthermore, the person to be added might not have all the attributes deemed compulsory.
 
 
 Thus, we decided that several non essential attributes can
-be optional inputs for the user.
+be optional inputs/fields for the user.
 
 ==== Implementation
 
