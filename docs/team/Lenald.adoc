@@ -24,7 +24,7 @@ The application is written in `Java`.
 
 ---
 
-#Start of Extract [from: Developer Guide]#
+#Start of Extract [from: User Guide]#
 
 include::../UserGuide.adoc[tag=randomisedUniqueTagColors]
 
