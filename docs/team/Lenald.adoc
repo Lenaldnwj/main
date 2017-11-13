@@ -24,7 +24,7 @@ The application is written in `Java`, and has about 8 thousand lines of code (kL
 
 ---
 
-#Start of Extract [from: Developer Guide]#
+#Start of Extract [from: User Guide]#
 
 include::../UserGuide.adoc[tag=randomisedUniqueTagColors]
 
